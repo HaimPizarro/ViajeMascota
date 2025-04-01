@@ -13,11 +13,11 @@ public class ViajeMascotaServices {
     private List<ViajeMascota> viajeMascotas = new ArrayList<>();
 
     public ViajeMascotaServices() {
-        viajeMascotas.add(new ViajeMascota(1L, "Pepe",10,"Pepe","Hombre","Masculino"));
-        viajeMascotas.add(new ViajeMascota(2L,"Juan",12,"Pepe","Hombre","Masculino"));
-        viajeMascotas.add(new ViajeMascota(3L,"Maria",8,"Pepe","Mujer","Femenino"));
-        viajeMascotas.add(new ViajeMascota(4L,"Pedro",10,"Maria","Mujer","Femenino"));
-        viajeMascotas.add(new ViajeMascota(5L,"Luis",12,"Maria","Mujer","Masculino"));
+        viajeMascotas.add(new ViajeMascota(1L,"Pepito",4,"Maria Luna","Pastor Aleman","Masculino"));
+        viajeMascotas.add(new ViajeMascota(2L,"Copito",2,"Pedro Rivera","Belga","Masculino"));
+        viajeMascotas.add(new ViajeMascota(3L,"Lazy",8,"Marecelo Vidal","Poddle","Femenino"));
+        viajeMascotas.add(new ViajeMascota(4L,"Nicanora",10,"Maria Rodriguez","Pastor Aleman","Femenino"));
+        viajeMascotas.add(new ViajeMascota(5L,"Thor",7,"Lucy Nuñez","Beagle","Masculino"));
     }
 
     public List<ViajeMascota> getViajeMascotas() {

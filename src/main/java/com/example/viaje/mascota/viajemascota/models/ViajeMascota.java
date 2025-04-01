@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ViajeMascota {
     private Long id;
-    private String nombre;
+    private String nombremascota;
     private int edad;
     private String dueño;
     private String raza;
