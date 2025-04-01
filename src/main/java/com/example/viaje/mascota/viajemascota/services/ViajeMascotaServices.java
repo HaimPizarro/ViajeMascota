@@ -17,6 +17,7 @@ public class ViajeMascotaServices {
         viajeMascotas.add(new ViajeMascota(2L,"Juan",12,"Pepe","Hombre","Masculino"));
         viajeMascotas.add(new ViajeMascota(3L,"Maria",8,"Pepe","Mujer","Femenino"));
         viajeMascotas.add(new ViajeMascota(4L,"Pedro",10,"Maria","Mujer","Femenino"));
+        viajeMascotas.add(new ViajeMascota(5L,"Luis",12,"Maria","Mujer","Masculino"));
     }
 
     public List<ViajeMascota> getViajeMascotas() {
