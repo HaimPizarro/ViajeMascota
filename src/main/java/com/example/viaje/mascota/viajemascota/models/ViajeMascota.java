@@ -27,14 +27,33 @@ jakarta.validation.constrains.Positive;
 @Table(name = "viajemascota") //Falta agregar base de datos
 public class ViajeMascota {
     @Id
-    @NotNull
+    @NotNull(message = "El campo id es obligatorio")
+    @Positive(messaje= 'El id debe tener un valor positivo')
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    
+    @NotBlank(message = "El campo nombre es obligatorio")
+    @Size(min=1, max=100, message="El campo nombre debe tener entre 1 y 100 caracteres")
     private String nombremascota;
+
+    @NotBlanc(mesage="El campo edad es obligatorio")
+    @Positive(message="El campo edad debe tener un valor positivo")
     private int edad;
+
+    @NotBlanc(message="El campo dueño es obligatorio")
+    @Size(min=1, max=100, message="El campo debe tener entre 1 y 100 caracteres")
     private String dueño;
+
+    @NotNull(message="El campo raza es obligatorio")
+    @Size(min=1, max=100, message="El campo debe tener entre 1 y 100 caracteres")
     private String raza;
+
+    @NotNull(message="El campo genero es obligatorio")
     private String genero;
+
+    @NotNull(message="El campo valor es obligatorio")
+    @Positive(message="El campo debe tener un valor positivo")
+    @Size(min=1, max=40, message = "El campo debe tener entre 1 y 40 caracteres")
+    private Int valor;
+
 }
