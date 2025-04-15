@@ -8,6 +8,7 @@ jakarta.persistence.table;
 import lombok.Data;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.stereotype.Indexed;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,12 @@ jakarta.validation.constrains.Positive;
 @EntityScan
 @Table(name = "viajemascota") //Falta agregar base de datos
 public class ViajeMascota {
+    @Id
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    
     private String nombremascota;
     private int edad;
     private String dueño;
