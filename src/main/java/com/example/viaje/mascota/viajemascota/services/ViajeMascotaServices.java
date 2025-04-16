@@ -1,30 +1,61 @@
 package com.example.viaje.mascota.viajemascota.services;
 
-import org.springframework.stereotype.Service;
-import com.example.viaje.mascota.viajemascota.models.ViajeMascota;
-
 import java.util.List;
-import java.util.Optional;
-import java.util.ArrayList;
+import org.springframework.stereotype.Service;
+
+import com.example.viaje.mascota.viajemascota.models.ViajeMascota;
+import com.example.viaje.mascota.viajemascota.repository.ViajesRepository;
+import com.example.viaje.mascota.viajemascota.exceptions.ViajesNotFound;
 
 @Service
 public class ViajeMascotaServices {
-    
-    private List<ViajeMascota> viajeMascotas = new ArrayList<>();
 
-    public ViajeMascotaServices() {
-        viajeMascotas.add(new ViajeMascota(1L,"Pepito",4,"Maria Luna","Pastor Aleman","Masculino"));
-        viajeMascotas.add(new ViajeMascota(2L,"Copito",2,"Pedro Rivera","Belga","Masculino"));
-        viajeMascotas.add(new ViajeMascota(3L,"Lazy",8,"Marecelo Vidal","Poddle","Femenino"));
-        viajeMascotas.add(new ViajeMascota(4L,"Nicanora",10,"Maria Rodriguez","Pastor Aleman","Femenino"));
-        viajeMascotas.add(new ViajeMascota(5L,"Thor",7,"Lucy Nuñez","Beagle","Masculino"));
+    private final ViajesRepository viajesRepository;
+
+    // El constructor debe llamarse igual que la clase
+    public ViajeMascotaServices(ViajesRepository viajesRepository) {
+        this.viajesRepository = viajesRepository;
     }
 
     public List<ViajeMascota> getViajeMascotas() {
-        return viajeMascotas;
+        return viajesRepository.findAll();
     }
 
-    public Optional<ViajeMascota> getViajeMascota(Long id) {
-        return viajeMascotas.stream().filter(viajeMascota -> viajeMascota.getId().equals(id)).findFirst();
+    public ViajeMascota getViajeMascotaById(Long id) {
+        return viajesRepository.findById(id)
+                .orElseThrow(() -> new ViajesNotFound(id));
     }
+
+    public ViajeMascota crearViaje(ViajeMascota viajeMascota) {
+        // Si ya existe un registro con ese ID, arrojamos excepción
+        if (viajeMascota.getId() != null && viajesRepository.existsById(viajeMascota.getId())) {
+            throw new IllegalArgumentException(
+                "El viaje con id: " + viajeMascota.getId() + " ya existe");
+        }
+        return viajesRepository.save(viajeMascota);
+    }
+
+    public ViajeMascota actualizarViaje(Long id, ViajeMascota viajeMascota) {
+        ViajeMascota viajeMascotaActual =
+                viajesRepository.findById(id)
+                        .orElseThrow(() -> new ViajesNotFound(id));
+
+        viajeMascotaActual.setNombremascota(viajeMascota.getNombremascota());
+        viajeMascotaActual.setEdad(viajeMascota.getEdad());
+        viajeMascotaActual.setDueño(viajeMascota.getDueño());
+        viajeMascotaActual.setRaza(viajeMascota.getRaza());
+        viajeMascotaActual.setGenero(viajeMascota.getGenero());
+        viajeMascotaActual.setValor(viajeMascota.getValor());
+
+        return viajesRepository.save(viajeMascotaActual);
+    }
+
+    public ViajeMascota eliminarViaje(Long id) {
+        ViajeMascota viajeMascota =
+                viajesRepository.findById(id)
+                        .orElseThrow(() -> new ViajesNotFound(id));
+        viajesRepository.delete(viajeMascota);
+        return viajeMascota; // Devuelve el que se eliminó
+    }
+
 }
