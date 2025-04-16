@@ -35,7 +35,7 @@ public class ViajeMascotaController {
     }
 
     @GetMapping("/{id}")
-    public ViajeMascota getViajeMascota(@PathVariable Long id) {
+    public ViajeMascota getViajeMascotaById(@PathVariable Long id) {
         // Llamamos al servicio: getViajeMascotaById(id)
         return viajeMascotaServices.getViajeMascotaById(id);
     }
