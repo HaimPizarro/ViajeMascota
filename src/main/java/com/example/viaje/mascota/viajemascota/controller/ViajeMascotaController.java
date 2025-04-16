@@ -1,17 +1,23 @@
 package com.example.viaje.mascota.viajemascota.controller;
 
-
-import com.example.viaje.mascota.viajemascota.models.ViajeMascota;
-import com.example.viaje.mascota.viajemascota.services.ViajeMascotaServices;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
+import com.example.viaje.mascota.viajemascota.models.ViajeMascota;
+import com.example.viaje.mascota.viajemascota.services.ViajeMascotaServices;
+import com.example.viaje.mascota.viajemascota.models.ResponseWrapper;
+import jakarta.validation.Valid;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/viajemascota")
@@ -29,8 +35,26 @@ public class ViajeMascotaController {
     }
 
     @GetMapping("/{id}")
-    public Optional<ViajeMascota> getViajeMascota(@PathVariable Long id) {
+    public ViajeMascota getViajeMascota(@PathVariable Long id) {
         return viajeMascotaServices.getViajeMascota(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<ResponseWrapper<ViajeMascota>> crearViaje(@Valid @RequestBody ViajeMascota viajeMascota) {
+        ViajeMascota viajeMascota = viajeMascotaServices.crearViaje(viajeMascota);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ResponseWrapper<>("Viaje creado con exito",  1, List.of(viajeMascota)));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ResponseWrapper<ViajeMascota>> actualizarViaje(@PathVariable Long id, @Valid @RequestBody ViajeMascota viajeMascota) {
+        ViajeMascota viajeMascota = viajeMascotaServices.actualizarViaje(id, viajeMascota);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>("Viaje actualizado con exito",  1, List.of(viajeMascota)));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ResponseWrapper<ViajeMascota>> eliminarViaje(@PathVariable Long id) {
+        ViajeMascota viajeMascota = viajeMascotaServices.eliminarViaje(id);
+        return ResponseEntity.status(HttpStatus.OK).body(new ResponseWrapper<>("Viaje eliminado con exito",  1, List.of(viajeMascota)));
     }
 
 }
