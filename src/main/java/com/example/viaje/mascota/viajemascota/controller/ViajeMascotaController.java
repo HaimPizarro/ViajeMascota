@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import java.util.List;
 
 @RestController
-@RequestMapping("/viajemascota")
+@RequestMapping("/api/viajemascota")
 public class ViajeMascotaController {
 
     private final ViajeMascotaServices viajeMascotaServices;
@@ -42,7 +42,6 @@ public class ViajeMascotaController {
 
     @PostMapping
     public ResponseEntity<ResponseWrapper<ViajeMascota>> crearViaje(@Valid @RequestBody ViajeMascota viajeMascota) {
-        // Usamos una variable distinta
         ViajeMascota nuevoViaje = viajeMascotaServices.crearViaje(viajeMascota);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
@@ -53,7 +52,6 @@ public class ViajeMascotaController {
     public ResponseEntity<ResponseWrapper<ViajeMascota>> actualizarViaje(
             @PathVariable Long id,
             @Valid @RequestBody ViajeMascota viajeMascota) {
-        // Igual, variable distinta
         ViajeMascota viajeActualizado = viajeMascotaServices.actualizarViaje(id, viajeMascota);
         return ResponseEntity
                 .status(HttpStatus.OK)

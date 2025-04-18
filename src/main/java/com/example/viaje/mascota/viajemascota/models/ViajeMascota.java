@@ -38,7 +38,7 @@ public class ViajeMascota {
 
     @NotBlank(message = "El campo dueño es obligatorio")
     @Size(min = 1, max = 100, message = "El campo dueño debe tener entre 1 y 100 caracteres")
-    private String dueño;
+    private String duenio;
 
     @NotBlank(message = "El campo raza es obligatorio")
     @Size(min = 1, max = 100, message = "El campo raza debe tener entre 1 y 100 caracteres")

@@ -42,7 +42,7 @@ public class ViajeMascotaServices {
 
         viajeMascotaActual.setNombremascota(viajeMascota.getNombremascota());
         viajeMascotaActual.setEdad(viajeMascota.getEdad());
-        viajeMascotaActual.setDueño(viajeMascota.getDueño());
+        viajeMascotaActual.setDuenio(viajeMascota.getDuenio());
         viajeMascotaActual.setRaza(viajeMascota.getRaza());
         viajeMascotaActual.setGenero(viajeMascota.getGenero());
         viajeMascotaActual.setValor(viajeMascota.getValor());
