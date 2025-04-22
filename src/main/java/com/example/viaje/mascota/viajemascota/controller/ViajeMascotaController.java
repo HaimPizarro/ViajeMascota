@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/viajemascota")
+@RequestMapping("/viajemascota")
 public class ViajeMascotaController {
 
     private final ViajeMascotaServices viajeMascotaServices;
