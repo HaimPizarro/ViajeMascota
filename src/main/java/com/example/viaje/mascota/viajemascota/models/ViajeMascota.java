@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "viajemascota")  // Asegúrate de que coincida con tu tabla real en la BD
+@Table(name = "viajemascota")
 public class ViajeMascota {
 
     @Id

@@ -12,7 +12,6 @@ public class ViajeMascotaServices {
 
     private final ViajesRepository viajesRepository;
 
-    // El constructor debe llamarse igual que la clase
     public ViajeMascotaServices(ViajesRepository viajesRepository) {
         this.viajesRepository = viajesRepository;
     }
@@ -27,7 +26,6 @@ public class ViajeMascotaServices {
     }
 
     public ViajeMascota crearViaje(ViajeMascota viajeMascota) {
-        // Si ya existe un registro con ese ID, arrojamos excepción
         if (viajeMascota.getId() != null && viajesRepository.existsById(viajeMascota.getId())) {
             throw new IllegalArgumentException(
                 "El viaje con id: " + viajeMascota.getId() + " ya existe");
@@ -55,7 +53,7 @@ public class ViajeMascotaServices {
                 viajesRepository.findById(id)
                         .orElseThrow(() -> new ViajesNotFound(id));
         viajesRepository.delete(viajeMascota);
-        return viajeMascota; // Devuelve el que se eliminó
+        return viajeMascota;
     }
 
 }
